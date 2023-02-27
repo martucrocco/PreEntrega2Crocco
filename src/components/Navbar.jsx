@@ -1,26 +1,36 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import Burgerbutton from './Burgerbutton'
+import logo from "../assets/img/logo.jpg"
+import Cartwidget from './Cartwidget'
+
 function Navbar() {
   const [clicked, setClicked] = useState(false)
   const handleClick = () => {
-    //cuando esta true lo pasa a false y vice versa
+   
     setClicked(!clicked)
   }
   return (
     <>
     <NavContainer>
-        <h2>YZ <span>CERAMICA</span></h2>
+      <header className='header'>
+        <img  className='logoyz'  src={logo} alt=""/>
+        
         <div className={`links ${clicked ? 'active' : ''}`}>
           <a onClick={handleClick} href="#h">INICIO</a>
           <a onClick={handleClick} href="#h">PRODUCTOS</a>
           <a onClick={handleClick} href="#h">TALLERES</a>
           <a onClick={handleClick} href="#h">CONTACTO</a>
+          <br/>
+          <br/>
+          <a onClick={handleClick} href="#h"><Cartwidget/></a>
         </div>
         <div className='Burguer'>
           <Burgerbutton clicked={clicked} handleClick={handleClick}/>
         </div>
         <BgDiv className={`initial ${clicked ? ' active' : ''}`}></BgDiv>
+
+      </header>
     </NavContainer>
     </>
   )
@@ -29,23 +39,27 @@ function Navbar() {
 export default Navbar
 
 const NavContainer = styled.nav`
-  h2{
-    color: white;
-    font-weight: 400;
-    span{
-      font-weight: bold;
-    }
-  }
-  padding: .4rem;
-  background-color: #333;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+ 
+ .header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: .3rem;
+ 
+ background-color: #333;
+
+ }
+  
   a{
     color: white;
     text-decoration: none;
     margin-right: 1rem;
   }
+  .logoyz{
+    height: 120px;
+    width: 120px;
+  }
+
   .links{
     position: absolute;
     top: -700px;
@@ -57,14 +71,14 @@ const NavContainer = styled.nav`
     transition: all .5s ease;
     a{
       color: white;
-      font-size: 2rem;
+      font-size: 1.5rem;
       display: block;
     }
     @media(min-width: 768px){
       position: initial;
       margin: 0;
       a{
-        font-size: 1rem;
+        font-size: 1.5rem;
         color: white;
         display: inline;
       }
@@ -111,4 +125,4 @@ const BgDiv = styled.div`
     width: 100%;
     height: 100%;
   }
-`
+  `
